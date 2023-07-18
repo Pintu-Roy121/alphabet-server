@@ -106,6 +106,15 @@ async function run() {
             res.send(orderlist)
         })
 
+        app.delete('/order-delete/:pid/:uid', async (req, res) => {
+            const pid = req.params?.pid;
+            const uid = req.params?.uid;
+            const query = { p_id: pid, u_id: uid };
+            const result = await orderCollection.deleteOne(query)
+            res.send(result);
+            // console.log(pid, uid);
+        })
+
         app.post('/addtocart', async (req, res) => {
             const product = req.body;
             const result = await cartCollection.insertOne(product);
@@ -118,6 +127,13 @@ async function run() {
             const cartList = await cartCollection.find(query).toArray()
 
             res.send(cartList)
+        })
+        app.delete('/cart-delete/:pid/:uid', async (req, res) => {
+            const pid = req.params?.pid;
+            const uid = req.params?.uid;
+            const query = { p_id: pid, u_id: uid };
+            const result = await cartCollection.deleteOne(query);
+            res.send(result)
         })
 
     } finally {
