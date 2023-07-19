@@ -112,7 +112,6 @@ async function run() {
             const query = { p_id: pid, u_id: uid };
             const result = await orderCollection.deleteOne(query)
             res.send(result);
-            // console.log(pid, uid);
         })
 
         app.post('/addtocart', async (req, res) => {
