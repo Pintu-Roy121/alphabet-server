@@ -124,7 +124,6 @@ async function run() {
             const id = req.params.id;
             const query = { u_id: id };
             const cartList = await cartCollection.find(query).toArray()
-
             res.send(cartList)
         })
         app.delete('/cart-delete/:pid/:uid', async (req, res) => {
